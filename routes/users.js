@@ -20,12 +20,9 @@ router.post('/', async (req, res) =>{
 	const salt = await bcrypt.genSalt(10)
 	user.password = await bcrypt.hash(user.password, salt)
 	await user.save()
-	payload = {
-		'_id':user._id,
-		'isAdmin':user.isAdmin
-	}
+
 	const token = user.generateAuthToken();
-  res.header('x-auth-token', token).send(_.pick(user, ['_id', 'name', 'email']));
+  	res.header('x-access-token', token).send(_.pick(user, ['_id', 'name', 'email']));
 })
 
 router.get('/me',  auth,async (req,res) =>{

@@ -9,11 +9,10 @@ const Movie = mongoose.model('Movies', new mongoose.Schema({
     required: true,
     trim: true, 
     minlength: 5,
-    maxlength: 255
+    maxlength: 50
   },
   genre: { 
-    type: {type:genreschema},  
-    required: true
+    type: {type:genreschema} 
   },
   numberInStock: { 
     type: Number, 

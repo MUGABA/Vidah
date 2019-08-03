@@ -1,4 +1,6 @@
 const {Rental, validate} = require('../models/rental'); 
+const auth = require('../middleware/auth')
+const validId = require('../middleware/validateobjectid')
 const {Movie} = require('../models/movie'); 
 const {Customer} = require('../models/customer'); 
 const mongoose = require('mongoose');
@@ -54,7 +56,7 @@ router.post('/', async (req, res) => {
 
 });
 
-router.get('/:id', async (req, res) => {
+router.get('/:id',[validId,auth], async (req, res) => {
   const rental = await Rental.findById(req.params.id);
 
   if (!rental) return res.status(404).send('The rental with the given ID was not found.');

@@ -21,8 +21,7 @@ const rentalSchema =  new mongoose.Schema({
         minlength: 5,
         maxlength: 50
       }      
-    }),  
-    required: true
+    })
   },
   movie: {
     type: new mongoose.Schema({
@@ -39,8 +38,7 @@ const rentalSchema =  new mongoose.Schema({
         min: 0,
         max: 255
       }   
-    }),
-    required: true
+    })
   },
   dateOut: { 
     type: Date, 

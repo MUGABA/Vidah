@@ -1,4 +1,7 @@
 // routes for a customer
+const auth = require('../middleware/auth')
+const admin = require('../middleware/admin')
+const validId = require('../middleware/validateobjectid')
 const _ = require('lodash')
 const {Customer, validate} = require('../models/customer')
 const mongoose = require('mongoose')
@@ -15,12 +18,12 @@ router.post('/',async (req,res)=>{
 	res.send(_.pick(customer,['_id','name','phone']));
 });
 //getting all customers
-router.get('/', async (req, res) =>{
+router.get('/', auth, async (req, res) =>{
 	const customers = await Customer.find().sort('name');
 	res.send(customers);
 });
 //geting specific customer
-router.get('/:id',async (req,res)=>{
+router.get('/:id',[validId,auth],async (req,res)=>{
 	const customer = await Customer.findById(req.params.id);
 	if(!customer)return res.status(404).send({message:"customer is not found"});
 
@@ -28,7 +31,7 @@ router.get('/:id',async (req,res)=>{
 
 });
 // updating a customer
-router.patch('/:id',async (req,res)=>{
+router.patch('/:id',validId,async (req,res)=>{
 	const{error} = validate(req.body);
 	if(error)return res.status(400).send(error.details[0].message);
 
@@ -45,8 +48,7 @@ router.patch('/:id',async (req,res)=>{
 	});
 });
 //deleting a customer
-router.delete('/:id', async (req,res)=>{
-
+router.delete('/:id',[auth, validId], async (req,res)=>{
 	const customer = await Customer.findById(req.params.id);
 	if(!customer)return res.status(404).send({message:"customer is not found"});
 

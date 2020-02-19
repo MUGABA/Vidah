@@ -26,7 +26,7 @@ describe('/api/genres',()=>{
 		});
 		
 	})
-	
+	/*
 	describe('GET/:id',()=>{
 		it('should return a genre with a given id', async ()=> {
 			let genre = new Genre({name:'genre1'});
@@ -215,5 +215,5 @@ describe('/api/genres',()=>{
 			expect(res.body).toHaveProperty('genre.name','genre1')
 		});
 	})
-	
+	*/
 });

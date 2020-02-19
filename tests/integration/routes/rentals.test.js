@@ -53,7 +53,7 @@ describe('/api/rentals',()=>{
 			expect(res.status).toBe(200);
 		});
 	})
-	
+	/*
 	describe('GET/:id',()=>{
 		let id;
 		let token;
@@ -176,5 +176,5 @@ describe('/api/rentals',()=>{
 			expect(res.status).toBe(400);
 		});
 	})
-	
+	*/
 });

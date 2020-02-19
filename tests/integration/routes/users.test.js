@@ -93,7 +93,7 @@ describe('/api/users',()=>{
 			await user.save()
 			token = new User(user).generateAuthToken()
 		});
-		it('should return a rental with a given id', async ()=> {
+		it('should return a user that is logged in', async ()=> {
 
 			res = await exec() 
 

@@ -1,0 +1,4 @@
+{
+	"SECRET_KEY":"12345",
+	"db":"mongodb://localhost/vidal_tests"
+}
